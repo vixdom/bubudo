@@ -143,7 +143,7 @@ export async function breakDownTask(
     return parsedSubtasks;
   } catch (error) {
     console.error("Error breaking down task:", error);
-    if (error instanceof Error && error.message.includes("API key not valid")) {
+    if (error instanceof Error && error.message.includes("API key not valid.")) {
       throw new Error('Invalid API Key. Please check your .env file and Google AI Studio settings.');
     }
     if (error instanceof Error && error.message.includes("400")) {
@@ -153,3 +153,4 @@ export async function breakDownTask(
     throw new Error('Failed to break down task');
   }
 }
+   
