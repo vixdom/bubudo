@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Task Manager - Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .task-card {
+            transition: all 0.2s ease;
+        }
+        .task-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .subtask-card {
+            transition: all 0.2s ease;
+        }
+        .subtask-card:hover {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <nav class="bg-white shadow-sm">
+        <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+                </svg>
+                <h1 class="text-xl font-semibold text-gray-800">AI Task Manager</h1>
+            </div>
+            <div>
+                <span class="text-gray-600">Welcome, User</span>
+                <button class="ml-4 text-sm text-gray-600 hover:text-gray-800">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-6 max-w-4xl">
+        <!-- Task Input -->
+        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 mb-6">
+            <h2 class="text-xl font-semibold mb-4">What do you need to get done?</h2>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-lg" placeholder="Enter a task...">
+                </div>
+                <div class="mb-3">
+                    <textarea class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 h-24" placeholder="Add more details (optional)"></textarea>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" class="px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400 mr-2">Cancel</button>
+                    <button type="submit" class="px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500">Add Task</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Task List -->
+        <h2 class="text-2xl font-bold mb-4">Your Tasks</h2>
+
+        <!-- Task Card 1 (with AI-generated subtasks) -->
+        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow mb-4">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold">Plan family vacation to Japan</h3>
+                <div class="flex space-x-2">
+                    <span class="text-sm font-medium text-yellow-600">Medium</span>
+                    <span class="text-sm text-gray-500">Due: 05/15/2025</span>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-3">Need to plan a 10-day trip to Japan for the summer. Should include Tokyo, Kyoto, and maybe a rural area.</p>
+            
+            <!-- Progress bar -->
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Progress</span>
+                    <span>40%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 40%"></div>
+                </div>
+            </div>
+            
+            <!-- Subtasks -->
+            <div class="mt-4">
+                <h4 class="text-md font-medium mb-2">Subtasks:</h4>
+                <div class="space-y-2">
+                    <!-- Completed subtask -->
+                    <div class="p-4 border border-gray-100 rounded-md mb-2 hover:bg-gray-50 transition-colors bg-gray-50">
+                        <div class="flex items-start">
+                            <input type="checkbox" checked class="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                            <div class="flex-1">
+                                <p class="line-through text-gray-500">Research best time to visit Japan based on weather and crowds</p>
+                                <a href="https://www.japan-guide.com/e/e2273.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm mt-1 inline-block">Helpful Resource →</a>
+                            </div>
+                            <button class="text-gray-400 hover:text-red-500 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending subtask with link -->
+                    <div class="p-4 border border-gray-100 rounded-md mb-2 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                            <div class="flex-1">
+                                <p class="text-gray-900">Create a budget spreadsheet for the trip expenses</p>
+                                <a href="https://templates.office.com/en-us/travel-budget-template-tm02930032" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm mt-1 inline-block">Helpful Resource →</a>
+                            </div>
+                            <button class="text-gray-400 hover:text-red-500 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending subtask -->
+                    <div class="p-4 border border-gray-100 rounded-md mb-2 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                            <div class="flex-1">
+                                <p class="text-gray-900">Book flights at least 3 months in advance for better rates</p>
+                            </div>
+                            <button class="text-gray-400 hover:text-red-500 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending subtask with link -->
+                    <div class="p-4 border border-gray-100 rounded-md mb-2 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                            <div class="flex-1">
+                                <p class="text-gray-900">Research Japan Rail Pass options for intercity travel</p>
+                                <a href="https://www.japan-rail-pass.com/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm mt-1 inline-block">Helpful Resource →</a>
+                            </div>
+                            <button class="text-gray-400 hover:text-red-500 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Pending subtask with link -->
+                    <div class="p-4 border border-gray-100 rounded-md mb-2 hover:bg-gray-50 transition-colors">
+                        <div class="flex items-start">
+                            <input type="checkbox" class="mt-1 mr-3 h-4 w-4 text-blue-600 rounded focus:ring-blue-500">
+                            <div class="flex-1">
+                                <p class="text-gray-900">Download a translation app and learn basic Japanese phrases</p>
+                                <a href="https://www.duolingo.com/course/ja/en/Learn-Japanese" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline text-sm mt-1 inline-block">Helpful Resource →</a>
+                            </div>
+                            <button class="text-gray-400 hover:text-red-500 ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- AI Tip -->
+            <div class="mt-4 p-3 bg-blue-50 text-blue-800 rounded-md text-sm">
+                <span class="font-medium">💡 Tip:</span> Start by focusing on booking flights first, as prices tend to increase closer to travel dates.
+            </div>
+            
+            <!-- Actions -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between">
+                <div class="space-x-2">
+                    <select class="text-sm border border-gray-300 rounded px-2 py-1">
+                        <option value="pending">To Do</option>
+                        <option value="in-progress" selected>In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    
+                    <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+                </div>
+                
+                <button class="text-sm text-red-600 hover:text-red-800">Delete</button>
+            </div>
+        </div>
+
+        <!-- Task Card 2 (without subtasks yet) -->
+        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow mb-4">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold">Learn React Native for mobile development</h3>
+                <div class="flex space-x-2">
+                    <span class="text-sm font-medium text-red-600">High</span>
+                </div>
+            </div>
+            <p class="text-gray-600 mb-3">Need to build skills for developing cross-platform mobile apps.</p>
+            
+            <!-- Generate subtasks button -->
+            <div class="mt-4 flex justify-center">
+                <button class="px-4 py-2 rounded-md font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400 text-sm">
+                    Generate Subtasks with AI
+                </button>
+            </div>
+            
+            <!-- Actions -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between">
+                <div class="space-x-2">
+                    <select class="text-sm border border-gray-300 rounded px-2 py-1">
+                        <option value="pending" selected>To Do</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                    
+                    <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+                </div>
+                
+                <button class="text-sm text-red-600 hover:text-red-800">Delete</button>
+            </div>
+        </div>
+
+        <!-- Task Card 3 (completed) -->
+        <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-100 hover:shadow-md transition-shadow mb-4">
+            <div class="flex justify-between items-start mb-2">
+                <h3 class="text-lg font-semibold">Set up home office workspace</h3>
+                <div class="flex space-x-2">
+                    <span class="text-sm font-medium text-green-600">Low</span>
+                </div>
+            </div>
+            
+            <!-- Progress bar -->
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>Progress</span>
+                    <span>100%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+                </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between">
+                <div class="space-x-2">
+                    <select class="text-sm border border-gray-300 rounded px-2 py-1">
+                        <option value="pending">To Do</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="completed" selected>Completed</option>
+                    </select>
+                    
+                    <a href="#" class="text-sm text-blue-600 hover:underline">View Details</a>
+                </div>
+                
+                <button class="text-sm text-red-600 hover:text-red-800">Delete</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-4 text-center text-gray-500 text-sm">
+        <p>AI Task Manager © 2025</p>
+    </footer>
+
+    <script>
+        // Demo interactions
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const subtaskCard = this.closest('.subtask-card');
+                const textElement = subtaskCard.querySelector('p');
+                
+                if (this.checked) {
+                    textElement.classList.add('line-through', 'text-gray-500');
+                    subtaskCard.classList.add('bg-gray-50');
+                } else {
+                    textElement.classList.remove('line-through', 'text-gray-500');
+                    subtaskCard.classList.remove('bg-gray-50');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

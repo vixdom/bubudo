@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktask_app_frontend=self.webpackChunktask_app_frontend||[]).push([[952],{4952:e=>{e.exports=function(){throw new Error("ws does not work in the browser. Browser clients must use the native WebSocket object")}}}]);
+//# sourceMappingURL=952.1e3d0690.chunk.js.map
